@@ -3,6 +3,7 @@ from sys import argv
 import main
 
 
+
 def startup():
     # print(len(argv))
     if len(argv) > 1:

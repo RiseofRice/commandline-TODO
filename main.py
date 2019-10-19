@@ -11,18 +11,16 @@ def generate_ids():
 
 
 def filehandler():
-    files = os.listdir()
+    files = os.listdir("C:/todo")
     if "todo.txt" in files:
-        return "todo.txt"
+        pass
+        
     else:
-        foo = open("todo.txt", "w")
-        foo.close()
-        return foo
-
+        with open("C:/todo/todo.txt", "w") as file:
+            pass
 
 def filewriter(gid, name, value=""):
-    file = filehandler()
-    with open(file, "a+") as file:
+    with open("C:/todo/todo.txt", "a+") as file:
         if value == "":
             formated_string_to_write = f"{gid} || Name: {name}\n"
             file.write(formated_string_to_write)
@@ -38,20 +36,19 @@ def new_todo(name, value=""):
 
 def del_todo(gid):
     # print(gid)
-    file = filehandler()
-    with open("todo.txt", "r") as file:
+    with open("C:/todo/todo.txt", "r") as file:
         lines = file.readlines()
-    with open("todo.txt", "w") as file:
+    with open("C:/todo/todo.txt", "w") as file:
         for line in lines:
             # print(line.split(" ")[0])
             if line.split(" ")[0] != gid:
                 file.write(line)
 
 def mark_as_done(gid):
-    file = "todo.txt"
-    with open("todo.txt", "r") as file:
+    
+    with open("C:/todo/todo.txt", "r") as file:
         lines = file.readlines()
-    with open("todo.txt", "w") as file:
+    with open("C:/todo/todo.txt", "w") as file:
         for line in lines:
             if line.startswith(gid) == True:
                 file.write(str(line).replace("\n", "") + " || DONE!" + "\n")
@@ -61,7 +58,7 @@ def mark_as_done(gid):
 
 
 def view_todos(max="x"):
-    with open("todo.txt", "r") as file:
+    with open("C:/todo/todo.txt", "r") as file:
         lines = file.read().splitlines()
         for line in lines:
             print(line)
