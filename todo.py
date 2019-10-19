@@ -21,10 +21,21 @@ def startup():
         elif argv[1] in ["-d", "--delete", "--del"]:
             if len(argv) > 2:
                 gid = argv[2]
-                main.del_line(gid)
+                main.del_todo(gid)
+            else:
+                print("you need to type in a the generated id(gid)")
+                main.view_todos()
 
         elif argv[1] in ["-l", "--list", "-ls"]:
             main.view_todos()
+
+        elif argv[1] in ["--done", "-c"]:
+            if len(argv) > 2:
+                gid = argv[2]
+                main.mark_as_done(gid)
+            else:
+                print("you need to type in a the generated id(gid)")
+                main.view_todos()
 
 
 if __name__ == '__main__':

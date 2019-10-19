@@ -36,7 +36,7 @@ def new_todo(name, value=""):
     gid = generate_ids()
     filewriter(gid, name, value)
 
-def del_line(gid):
+def del_todo(gid):
     # print(gid)
     file = filehandler()
     with open("todo.txt", "r") as file:
@@ -46,6 +46,18 @@ def del_line(gid):
             # print(line.split(" ")[0])
             if line.split(" ")[0] != gid:
                 file.write(line)
+
+def mark_as_done(gid):
+    file = "todo.txt"
+    with open("todo.txt", "r") as file:
+        lines = file.readlines()
+    with open("todo.txt", "w") as file:
+        for line in lines:
+            if line.startswith(gid) == True:
+                file.write(str(line).replace("\n", "") + " || DONE!" + "\n")
+            else:
+                file.write(line)
+
 
 
 def view_todos(max="x"):
