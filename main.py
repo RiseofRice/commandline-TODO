@@ -22,10 +22,10 @@ def filehandler():
 def filewriter(gid, name, value=""):
     with open("C:/todo/todo.txt", "a+") as file:
         if value == "":
-            formated_string_to_write = f"{gid} || Name: {name}\n"
+            formated_string_to_write = f"{gid}\t || Name: {name}\n"
             file.write(formated_string_to_write)
         else:
-            formated_string_to_write = f"{gid} || Name: {name} || Description: {value}\n"
+            formated_string_to_write = f"{gid}\t || Name: {name} || Description: {value}\n"
             file.write(formated_string_to_write)
 
 
@@ -33,7 +33,8 @@ def new_todo(name, value=""):
     # print(generate_ids(), name, value)
     gid = generate_ids()
     filewriter(gid, name, value)
-
+    
+ 
 def del_todo(gid):
     # print(gid)
     with open("C:/todo/todo.txt", "r") as file:
@@ -41,7 +42,7 @@ def del_todo(gid):
     with open("C:/todo/todo.txt", "w") as file:
         for line in lines:
             # print(line.split(" ")[0])
-            if line.split(" ")[0] != gid:
+            if line.startswith(gid) != True:
                 file.write(line)
 
 def mark_as_done(gid):
